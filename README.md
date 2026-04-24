@@ -78,13 +78,11 @@
 
 **├─ icon.ico**
 
-**└─ renderer/**
+**├─ index.html**
 
-&#x20;  **├─ index.html**
+**├─ app.js**
 
-&#x20;  **├─ app.js**
-
-&#x20;  **└─ styles.css**
+**└─ styles.css**
 
 
 
