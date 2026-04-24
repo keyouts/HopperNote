@@ -100,7 +100,9 @@
 
 **Start the app:**
 
+**Install Node.js if needed.
 
+**From HopperNote1.2.4 folder, run command / console prompt. (cmd)
 
 **npm start**
 
