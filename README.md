@@ -1,6 +1,6 @@
 ##### **Hopper Note**
 
-![ImageAlt](https://github.com/keyouts/HopperNote/blob/c5d324e082a68c8e00c4f326ed0d921034c11feb/HopperScreencap.png)
+![ImageAlt](https://github.com/keyouts/HopperNote/blob/6431c4c87b24b8e92f3ab52b42c864b0f501852e/HopperScreencap.png)
 
 **Hopper Note is a desktop journaling app built to work alongside Highlight Hopper and Highlight Hopper Desktop.**
 
