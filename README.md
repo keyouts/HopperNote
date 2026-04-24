@@ -102,7 +102,7 @@
 
 **Install Node.js if needed.
 
-**From HopperNote1.2.4 folder, run command / console prompt. (cmd)
+**From HopperNote1.2.4 folder, run command / console prompt from the address bar. (cmd)
 
 **npm start**
 
