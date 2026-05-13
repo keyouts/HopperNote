@@ -2,152 +2,121 @@
 
 ![ImageAlt](https://github.com/keyouts/HopperNote/blob/6431c4c87b24b8e92f3ab52b42c864b0f501852e/HopperScreencap.png)
 
-**Hopper Note is a desktop journaling app built to work alongside Highlight Hopper and Highlight Hopper Desktop.**
+# Hopper Note
 
+Hopper Note is a desktop journaling app built to work alongside Highlight Hopper and Highlight Hopper Desktop.
 
+It lets you import exported highlight CSV files, keep a searchable library of saved highlights, and turn them into longer journal entries with formatting, images, and embedded video.
 
-**It lets you import your exported highlight CSV files, keep a searchable library of saved highlights, and turn them into longer journal entries with formatting, images, and embedded video. It is meant to feel like a writing space first, while still staying compatible with the rest of the Highlight Hopper workflow.**
+The app is designed to feel like a writing space first while remaining compatible with the broader Highlight Hopper workflow.
 
+---
 
+## Features
 
-##### **What it does**
+- Create and edit journal entries
+- Auto-save entries locally
+- Import highlight CSV files exported from Highlight Hopper
+- Keep a searchable highlight library in the right sidebar
+- Insert saved highlights directly into entries
+- Format text with:
+  - Bold
+  - Italics
+  - Headings
+  - Lists
+  - Blockquotes
+- Insert images into entries
+- Embed YouTube and Vimeo links
+- Export entries as HTML files that can:
+  - Be opened in a browser
+  - Be imported into Google Docs
+- Export the highlight library back to CSV
 
+---
 
+## Compatibility
 
-**- Create and edit journal entries**
+Hopper Note is designed to work with the same CSV structure used by Highlight Hopper and Highlight Hopper Desktop.
 
-**- Auto-save entries locally**
+### Expected CSV Columns
 
-**- Import highlight CSV files exported from Highlight Hopper**
+- `URL`
+- `Color`
+- `Text`
+- `Note`
+- `Timestamp`
 
-**- Keep a searchable highlight library in the right sidebar**
+If a CSV includes those columns, Hopper Note should be able to import it.
 
-**- Insert saved highlights directly into entries**
+---
 
-**- Format text with bold, italics, headings, lists, and blockquotes**
+## Project Structure
 
-**- Insert images into entries**
+```text
+hopper-journal/
+├─ main.js
+├─ preload.js
+├─ package.json
+├─ icon.ico
+├─ index.html
+├─ app.js
+└─ styles.css
+```
 
-**- Embed YouTube and Vimeo links**
+---
 
-**- Export entries as HTML files that can be opened in a browser or imported into Google Docs**
+## Running the App
 
-**- Export the highlight library back to CSV**
+### Install Dependencies
 
+```bash
+npm install
+```
 
+### Start the App
 
-##### **Compatibility**
+Install Node.js if needed.
 
+From the `HopperNote1.2.4` folder, open a command prompt or terminal and run:
 
+```bash
+npm start
+```
 
-**Hopper Note is designed to work with the same CSV structure used by Highlight Hopper and Highlight Hopper Desktop.**
+---
 
+## Building the App
 
+To build a packaged version:
 
-##### **Expected CSV columns:**
+```bash
+npm run build
+```
 
+---
 
+## Exporting Entries
 
-**- URL**
+Entries can be exported as `.html` files. Exported files:
 
-**- Color**
+- Preserve most formatting
+- Keep inserted images
+- Keep inserted highlight blocks
+- Can be opened in a browser
+- Can be uploaded to Google Drive and opened in Google Docs
 
-**- Text**
+---
 
-**- Note**
+## Notes About Saving
 
-**- Timestamp**
+The app is intended to save data locally on the device it is running on.
 
-
-
-**If a CSV includes those columns, Hopper Note should be able to import it.**
-
-
-
-##### **Project structure**
-
-
-
-**hopper-journal/**
-
-**├─ main.js**
-
-**├─ preload.js**
-
-**├─ package.json**
-
-**├─ icon.ico**
-
-**├─ index.html**
-
-**├─ app.js**
-
-**└─ styles.css**
-
-
-
-##### **Running the app**
-
-
-
-**Install dependencies:**
-
-
-
-**npm install**
-
-
-
-**Start the app:**
-
-**Install Node.js if needed.
-
-**From HopperNote1.2.4 folder, run command / console prompt from the address bar. (cmd)
-
-**npm start**
-
-**Building the app**
-
-
-
-**To build a packaged version:**
-
-
-
-**npm run build**
-
-##### 
-
-##### **Exporting entries**
-
-
-
-Entries can be exported as .html files. These:
-
-
-
-* preserve most formatting
-* keep inserted images
-* keep inserted highlight blocks
-* can be opened in a browser
-* can be uploaded to Google Drive and opened in Google Docs
-
-
-Notes about saving
-
-
-
-**The app is intended to save data locally on the device it is running on. It's advised to export regularly to ensure backups of your notes.**
-
-
+Regular exports are recommended to ensure backups of your notes.
 
 Depending on configuration, saving may use:
 
-
-Electron-backed local file storage
-
-local browser storage as a fallback
-
+- Electron-backed local file storage
+- Local browser storage as a fallback
 
 This app does not require an account and does not sync to a remote server.
 
