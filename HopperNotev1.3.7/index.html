@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hopper Note</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob: https:; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:; frame-src https:;">
+  <link rel="stylesheet" href="src/renderer/styles.css">
+</head>
+<body>
+  <div id="app">
+    <aside id="entries-sidebar">
+      <div class="sidebar-top">
+        <h1>Hopper Note</h1>
+        <button id="new-entry-btn" type="button" aria-label="Create new journal entry"><span aria-hidden="true">New Entry</span><span class="visually-hidden">Create new journal entry</span></button>
+        <button id="new-notebook-btn" type="button" aria-label="Create new notebook"><span aria-hidden="true">New Notebook</span><span class="visually-hidden">Create new notebook</span></button>
+        <button id="duplicate-entry-btn" type="button" aria-label="Duplicate selected entry"><span aria-hidden="true">Duplicate Entry</span><span class="visually-hidden">Duplicate selected entry</span></button>
+        <button id="delete-entry-btn" type="button" aria-label="Delete selected entry"><span aria-hidden="true">Delete Entry</span><span class="visually-hidden">Delete selected entry</span></button>
+      </div>
+
+      <input id="entry-search-input" type="text" placeholder="Search entries..." aria-label="Search entries">
+
+      <div id="notebook-list" aria-label="Notebook list"></div>
+
+      <div id="entry-list" aria-label="Journal entries"></div>
+
+      <section id="tags-panel" aria-label="Entry tags">
+        <button id="tag-overlay-open" type="button" aria-label="Open tag filters">
+          <span>Tags / Filters</span>
+          <span id="tag-filter-count">0 tags</span>
+        </button>
+      </section>
+    </aside>
+
+    <main id="editor-shell">
+      <div id="editor-topbar">
+        <input id="entry-title-input" type="text" placeholder="Untitled entry" aria-label="Entry title">
+        <label id="notebook-picker-label" for="notebook-select">Notebook</label>
+        <select id="notebook-select" aria-label="Notebook for selected entry"></select>
+        <div id="meta-row">
+          <div id="entry-date-label">No entry selected</div>
+          <div id="save-status">Saved</div>
+        </div>
+      </div>
+
+      <section id="toolbar-panel" aria-label="Editor toolbar">
+        <div id="toolbar-header">
+          <span>Tools</span>
+          <button id="toolbar-toggle-btn" type="button" aria-label="Collapse editor tools" aria-expanded="true">×</button>
+        </div>
+        <div id="toolbar" aria-label="Editor tools">
+          <div class="toolbar-group" aria-label="Text formatting">
+          <button class="tool-btn icon-btn" data-command="bold" type="button" aria-label="Bold selected text"><strong aria-hidden="true">B</strong><span class="visually-hidden">Bold selected text</span></button>
+          <button class="tool-btn icon-btn" data-command="italic" type="button" aria-label="Italicize selected text"><em aria-hidden="true">I</em><span class="visually-hidden">Italicize selected text</span></button>
+          <button class="tool-btn icon-btn" data-action="h2" type="button" aria-label="Insert heading"><span aria-hidden="true">H2</span><span class="visually-hidden">Insert heading</span></button>
+          <button class="tool-btn compact-btn" data-action="ul" type="button" aria-label="Insert bullet list"><span aria-hidden="true">List</span><span class="visually-hidden">Insert bullet list</span></button>
+          <button class="tool-btn compact-btn" data-action="quote" type="button" aria-label="Insert quote block"><span aria-hidden="true">Quote</span><span class="visually-hidden">Insert quote block</span></button>
+          <button class="tool-btn compact-btn" id="clear-format-btn" type="button" aria-label="Clear formatting"><span aria-hidden="true">Clear</span><span class="visually-hidden">Clear formatting</span></button>
+        </div>
+          <div class="toolbar-group" aria-label="Insert tools">
+          <button class="tool-btn compact-btn" id="insert-image-btn" type="button" aria-label="Insert image"><span aria-hidden="true">Image</span><span class="visually-hidden">Insert image</span></button>
+          <button class="tool-btn compact-btn" id="insert-video-btn" type="button" aria-label="Insert video"><span aria-hidden="true">Video</span><span class="visually-hidden">Insert video</span></button>
+          <button class="tool-btn compact-btn" id="insert-highlight-btn" type="button" aria-label="Insert imported highlight"><span aria-hidden="true">Highlight</span><span class="visually-hidden">Insert imported highlight</span></button>
+          <button class="tool-btn compact-btn" id="template-btn" type="button" aria-label="Insert note template"><span aria-hidden="true">Template</span><span class="visually-hidden">Insert note template</span></button>
+        </div>
+          <div class="toolbar-group toolbar-group-right" aria-label="Entry actions">
+          <button class="tool-btn compact-btn" id="markdown-toggle-btn" type="button">Markdown</button>
+          <button class="tool-btn compact-btn" id="history-btn" type="button">History</button>
+          <button class="tool-btn compact-btn primary-btn" id="import-entry-btn" type="button" aria-label="Import entry"><span aria-hidden="true">Import</span><span class="visually-hidden">Import entry</span></button>
+          <button class="tool-btn compact-btn primary-btn" id="export-entry-btn" type="button" aria-label="Export entry"><span aria-hidden="true">Export</span><span class="visually-hidden">Export entry</span></button>
+          <button class="tool-btn compact-btn primary-btn" id="export-pdf-btn" type="button" aria-label="Export entry to PDF"><span aria-hidden="true">PDF</span><span class="visually-hidden">Export entry to PDF</span></button>
+          </div>
+        </div>
+      </section>
+
+      <div id="editor-wrap">
+        <div id="editor" contenteditable="true" spellcheck="true" aria-label="Journal editor"></div>
+        <div id="markdown-preview" aria-label="Markdown preview" hidden></div>
+      </div>
+    </main>
+
+    <aside id="highlights-sidebar">
+      <div class="sidebar-top">
+        <h2>Highlights Library</h2>
+        <button id="import-csv-btn" type="button" aria-label="Import highlights CSV"><span aria-hidden="true">Import CSV</span><span class="visually-hidden">Import highlights CSV</span></button>
+        <button id="export-csv-btn" type="button" aria-label="Export highlights CSV"><span aria-hidden="true">Export CSV</span><span class="visually-hidden">Export highlights CSV</span></button>
+      </div>
+
+      <input id="highlight-search-input" type="text" placeholder="Search highlights..." aria-label="Search highlights">
+
+      <div id="highlight-collections"><h3>Collections</h3><div id="collection-list"></div></div><div id="highlight-list" aria-label="Imported highlights"></div>
+    </aside>
+  </div>
+
+  <input id="image-input" type="file" accept="image/*" multiple hidden>
+  <input id="entry-html-input" type="file" accept=".html,.htm,text/html" hidden>
+  <div id="modal-root"></div>
+  <div id="tag-overlay-backdrop" class="tag-overlay-backdrop" hidden>
+    <section id="tag-overlay-card" aria-label="Tag filters">
+      <div id="tag-overlay-header">
+        <div>
+          <h2>Tags / Filters</h2>
+          <p>Filters from inserted highlight tags</p>
+        </div>
+        <button id="tag-overlay-close" type="button" aria-label="Close tag filters">×</button>
+      </div>
+      <div id="tag-overlay-controls">
+        <button id="tag-delete-mode-btn" type="button" aria-label="Toggle tag delete mode"><span aria-hidden="true">X Mode</span><span class="visually-hidden">Toggle tag delete mode</span></button>
+      </div>
+      <div id="tag-list"></div>
+    </section>
+  </div>
+  <div id="aria-live" class="visually-hidden" aria-live="polite"></div>
+
+  <script src="src/renderer/app.js"></script>
+</body>
+</html>
