@@ -1,0 +1,70 @@
+{
+  "name": "hopper-note",
+  "version": "1.3.8",
+  "main": "src/main/main.js",
+  "private": true,
+  "author": "KeyOuts",
+  "scripts": {
+    "start": "electron .",
+    "lint": "node --check src/main/main.js && node --check src/main/preload.js && node --check src/main/data-store.js && node --check src/main/security.js && node --check src/shared/validation.js && node --check src/renderer/app.js",
+    "test": "node --test test/*.test.js",
+    "check": "npm run lint && npm test",
+    "build": "npm run check && electron-builder"
+  },
+  "devDependencies": {
+    "electron": "42.7.1",
+    "electron-builder": "26.15.7"
+  },
+  "build": {
+    "appId": "com.hopper.note",
+    "productName": "Hopper Note",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "package.json",
+      "index.html",
+      "src/**/*",
+      "assets/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "assets/icon.ico",
+        "to": "icon.ico"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "deleteAppDataOnUninstall": false
+    },
+    "asar": true,
+    "compression": "maximum",
+    "artifactName": "${productName}-${version}-${arch}.${ext}",
+    "electronFuses": {
+      "runAsNode": false,
+      "enableCookieEncryption": true,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true,
+      "loadBrowserProcessSpecificV8Snapshot": false,
+      "grantFileProtocolExtraPrivileges": false
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "overrides": {
+    "tar": "^7.5.2"
+  },
+  "description": "A local-first desktop journal for highlights and long-form notes."
+}
